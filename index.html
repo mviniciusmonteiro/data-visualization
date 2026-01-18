@@ -1,0 +1,303 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard: Segurança Alimentar</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header class="hero-section">
+      <div class="hero-content">
+        <h1>Acessibilidade Global à Nutrição</h1>
+
+        <p class="hero-subtitle">
+          Análise de custos e acesso à dieta saudável.
+        </p>
+
+        <div class="hero-controls">
+          <label class="hero-label">Selecione seu país de interesse:</label>
+
+          <div id="pais-control-target"></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="tab-navigation">
+      <button class="tab-btn active" data-target="view-global">
+        🌐 Visão Mundo
+      </button>
+
+      <button class="tab-btn" data-target="view-brasil">🇧🇷 Foco Brasil</button>
+    </div>
+<div id="global-controls" class="dashboard-controls">
+      <div class="control-group">
+        <label>📅 Ano: <strong id="ano-valor">2024</strong></label>
+
+        <input
+          type="range"
+          id="input-ano"
+          min="2017"
+          max="2024"
+          step="1"
+          value="2024"
+        />
+      </div>
+
+      <div class="control-group">
+        <label>📊 Indicador:</label>
+
+        <select id="input-metrica" class="styled-select">
+          <optgroup label="Indicadores de Acesso (FAO)">
+            <option
+              value="Prevalence of unaffordability (PUA), percent"
+              selected
+            >
+              Prevalência de Inacessibilidade (PUA) - %
+            </option>
+
+            <option
+              value="Number of people unable to afford a healthy diet (NUA), million"
+            >
+              População sem Acesso à Dieta (NUA) - Milhões
+            </option>
+          </optgroup>
+
+          <optgroup label="Custo Geral (Dólar PPP)">
+            <option
+              value="Cost of a healthy diet (CoHD), PPP dollar per person per day"
+            >
+              Custo da Dieta Saudável (CoHD) - Dólar PPP
+            </option>
+          </optgroup>
+
+          <optgroup label="Custo por Grupo Alimentar (Dólar PPP)">
+            <option
+              value="Cost of animal source foods, PPP dollar per person per day"
+            >
+              Alimentos de Origem Animal - Dólar PPP
+            </option>
+
+            <option value="Cost of fruits, PPP dollar per person per day">
+              Frutas - Dólar PPP
+            </option>
+
+            <option value="Cost of vegetables, PPP dollar per person per day">
+              Vegetais e Hortaliças - Dólar PPP
+            </option>
+
+            <option
+              value="Cost of starchy staples, PPP dollar per person per day"
+            >
+              Amidos e Féculas (Starchy Staples) - Dólar PPP
+            </option>
+
+            <option
+              value="Cost of oils and fats, PPP dollar per person per day"
+            >
+              Óleos e Gorduras - Dólar PPP
+            </option>
+
+            <option
+              value="Cost of legumes, nuts and seeds, PPP dollar per person per day"
+            >
+              Leguminosas, Nozes e Sementes - Dólar PPP
+            </option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
+
+    <main class="main-container">
+      <div id="view-global" class="view-section">
+        <section class="card card-full-width">
+          <div class="card-header">
+            <h2>
+              <span id="lbl-titulo-metrica">Inacessibilidade (PUA)</span> (<span
+                class="lbl-ano"
+                >2024</span
+              >)
+            </h2>
+          </div>
+
+          <div class="card-body-split">
+           <aside class="context-box">
+              <p>
+                Este mapa varia conforme a métrica escolhida (Custo ou Prevalência). 
+                De modo geral, <strong>cores mais intensas</strong> indicam cenários mais críticos: comida mais cara ou maior % da população sem acesso.
+              </p>
+
+              <div class="glossary-term">
+  <strong> Dólar PPP (Paridade de Poder de Compra)</strong>
+  <p>
+    Ajusta os valores pelo custo de vida local. Serve para comparar o poder de compra real entre países, ignorando a taxa de câmbio oficial.
+  </p>
+</div>
+            </aside>
+
+            <div id="map-target">
+              <div class="loading">Carregando mapa...</div>
+            </div>
+          </div>
+        </section>
+
+        <div class="dashboard-grid">
+          <section class="card">
+            <div class="card-header"><h2>📈 Evolução da Média Global</h2></div>
+
+            <div class="timeline-events">
+              <div class="event" style="left: 42%">COVID</div>
+            </div>
+
+            <div id="time-series-target">
+              <div class="loading">Carregando...</div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <h2>🏆 Ranking (<span class="lbl-ano">2024</span>)</h2>
+            </div>
+
+            <div id="ranking-target" class="scroll-container">
+              <div class="loading">Carregando...</div>
+            </div>
+          </section>
+        </div>
+
+        <section class="card card-full-width">
+          <div class="card-header">
+           <h2>
+              🥗 Custo da Dieta Saudável por Grupo (<span id="lbl-pais-atual">País Selecionado</span>)
+            </h2>
+          </div>
+
+          <div class="card-body-split">
+            <aside class="context-box"><p>
+                Este gráfico decompõe o custo total da dieta nas categorias essenciais:
+                <strong>Proteínas, Frutas, Vegetais, Amidos e Óleos</strong>.
+              </p></aside>
+
+            <div id="graph-pizza-target">
+              <div class="loading">Carregando...</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card card-full-width">
+          <div class="card-header">
+            <h2>🔍 Scatter Plot (<span class="lbl-ano">2024</span>)</h2>
+          </div>
+
+          <div class="controls-compact">
+            <div class="mini-control" id="scatter-x"></div>
+
+            <div class="mini-control" id="scatter-y"></div>
+
+            <div id="scatter-year"></div>
+          </div>
+
+          <div id="scatter-target">
+            <div class="loading">Carregando...</div>
+          </div>
+        </section>
+      </div>
+
+      <div id="view-brasil" class="view-section" style="display: none">
+        <section class="card card-full-width">
+          <div class="card-header">
+            <h2>
+              🇧🇷 Geografia da Insegurança (<span class="lbl-ano">2024</span>)
+            </h2>
+
+            <p>Panorama da Insegurança Alimentar nos estados brasileiros.</p>
+          </div>
+
+          <div class="card-body-split">
+            <aside class="context-box">
+              <h3>Desigualdade Regional</h3>
+
+              <p>
+                O mapa destaca como a insegurança alimentar não atinge o país de
+                forma homogênea. Regiões Norte e Nordeste historicamente
+                apresentam índices mais críticos.
+              </p>
+
+              <div class="glossary-term">
+                <strong>Níveis:</strong>
+
+                <span
+                  >Leve (preocupação), Moderada (redução de quantidade) e Grave
+                  (fome).</span
+                >
+              </div>
+            </aside>
+
+            <div id="mapa-brasil-target">
+              <div class="loading">Carregando mapa...</div>
+            </div>
+          </div>
+        </section>
+
+        <div class="dashboard-grid">
+          <section class="card">
+            <div class="card-header">
+              <h2>📅 Evolução Histórica</h2>
+
+              <p>Como a situação mudou nos últimos anos?</p>
+            </div>
+
+            <div id="brasil-temporal-target">
+              <div class="loading">Carregando série temporal...</div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <h2>
+                📊 Distribuição da População (<span class="lbl-ano">2024</span>)
+              </h2>
+
+              <p>Quantas pessoas estão em cada nível de risco?</p>
+            </div>
+
+            <div id="brasil-distribuicao-target">
+              <div class="loading">Carregando gráfico de distribuição...</div>
+            </div>
+          </section>
+        </div>
+
+        <section class="card card-full-width">
+          <div class="card-header">
+            <h2>
+              🍽️ Composição da Insegurança (<span class="lbl-ano">2024</span>)
+            </h2>
+
+            <p>Detalhamento das características dos domicílios afetados.</p>
+          </div>
+
+          <div id="brasil-composicao-target">
+            <div class="loading">Carregando análise de composição...</div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

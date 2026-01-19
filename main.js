@@ -3,7 +3,7 @@ import {
   Inspector,
 } from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
 
-import define from "https://api.observablehq.com/@data-vis29/visualizacoes-trabalho@1112.js?v=4";
+import define from "https://api.observablehq.com/@data-vis29/visualizacoes-trabalho@1133.js?v=4";
 
 const runtime = new Runtime();
 
@@ -27,17 +27,14 @@ const main = runtime.module(define, (name) => {
     return new Inspector(document.querySelector("#scatter-year"));
   }
 
-  // 2. Seletor Eixo X
   if (name === "viewof eixoX") {
     return new Inspector(document.querySelector("#scatter-x"));
   }
 
-  // 3. Seletor Eixo Y
   if (name === "viewof eixoY") {
     return new Inspector(document.querySelector("#scatter-y"));
   }
 
-  // 4. O Gráfico em si
   if (name === "viewof scatter") {
     return new Inspector(document.querySelector("#scatter-target"));
   }
@@ -53,15 +50,12 @@ const main = runtime.module(define, (name) => {
   if (name === "viewof mapainseguranca")
     return new Inspector(document.querySelector("#mapa-brasil-target"));
 
-  // 2. Série Temporal
   if (name === "viewof insegurancatemporal")
     return new Inspector(document.querySelector("#brasil-temporal-target"));
 
-  // 3. Distribuição
   if (name === "viewof distribuicao")
     return new Inspector(document.querySelector("#brasil-distribuicao-target"));
 
-  // 4. Composição
   if (name === "viewof composicao")
     return new Inspector(document.querySelector("#brasil-composicao-target"));
 
@@ -90,7 +84,6 @@ const main = runtime.module(define, (name) => {
     };
   }
 
-  // Esconde o resto
   return true;
 });
 const nomesMetricas = {
@@ -164,7 +157,7 @@ tabButtons.forEach((btn) => {
     views.forEach((view) => {
       view.style.display = "none";
     });
-    document.getElementById(targetId).style.display = "block";
+    document.getElementById(targetId).style.display = "flex";
 
     if (targetId === "view-brasil") {
       globalControls.style.display = "none";

@@ -3,7 +3,7 @@ import {
   Inspector,
 } from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
 
-import define from "https://api.observablehq.com/@data-vis29/visualizacoes-trabalho@1090.js?v=4";
+import define from "https://api.observablehq.com/@data-vis29/visualizacoes-trabalho@1112.js?v=4";
 
 const runtime = new Runtime();
 

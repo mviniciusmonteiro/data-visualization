@@ -23,29 +23,25 @@
 
   <body>
     <header class="hero-section">
+      <div class="hero-bg-pattern"></div>
+
       <div class="hero-content">
         <h1>Acessibilidade Global à Nutrição</h1>
-
         <p class="hero-subtitle">
-          Análise de custos e acesso à dieta saudável.
+          Explore os dados da FAO (Organização das Nações Unidas para a Alimentação e a Agricultura) sobre custos e barreiras econômicas para uma
+          alimentação saudável ao redor do mundo.
         </p>
-
-        <div class="hero-controls">
-          <label class="hero-label">Selecione seu país de interesse:</label>
-
-          <div id="pais-control-target"></div>
-        </div>
       </div>
     </header>
 
     <div class="tab-navigation">
       <button class="tab-btn active" data-target="view-global">
-        🌐 Visão Mundo
+         Visão Mundo
       </button>
 
-      <button class="tab-btn" data-target="view-brasil">🇧🇷 Foco Brasil</button>
+      <button class="tab-btn" data-target="view-brasil">Foco Brasil</button>
     </div>
-<div id="global-controls" class="dashboard-controls">
+    <div id="global-controls" class="dashboard-controls">
       <div class="control-group">
         <label>📅 Ano: <strong id="ano-valor">2024</strong></label>
 
@@ -121,6 +117,11 @@
           </optgroup>
         </select>
       </div>
+
+      <div class="control-group">
+        <label>🌍 Foco no País:</label>
+        <div id="pais-control-target"></div>
+      </div>
     </div>
 
     <main class="main-container">
@@ -128,26 +129,35 @@
         <section class="card card-full-width">
           <div class="card-header">
             <h2>
-              <span id="lbl-titulo-metrica">Inacessibilidade (PUA)</span> (<span
-                class="lbl-ano"
+              Panorama Global da Acessibilidade (<span class="lbl-ano"
                 >2024</span
               >)
             </h2>
+            <p>
+              Análise visual baseada em:
+              <strong id="lbl-titulo-metrica" style="color: var(--primary)"
+                >Inacessibilidade (PUA)</strong
+              >
+            </p>
           </div>
 
           <div class="card-body-split">
-           <aside class="context-box">
+            <aside class="context-box">
               <p>
-                Este mapa varia conforme a métrica escolhida (Custo ou Prevalência). 
-                De modo geral, <strong>cores mais intensas</strong> indicam cenários mais críticos: comida mais cara ou maior % da população sem acesso.
+                Este mapa varia conforme a métrica escolhida (Custo ou
+                Prevalência). De modo geral,
+                <strong>cores mais intensas</strong> indicam cenários mais
+                críticos: comida mais cara ou maior % da população sem acesso.
               </p>
 
               <div class="glossary-term">
-  <strong> Dólar PPP (Paridade de Poder de Compra)</strong>
-  <p>
-    Ajusta os valores pelo custo de vida local. Serve para comparar o poder de compra real entre países, ignorando a taxa de câmbio oficial.
-  </p>
-</div>
+                <strong> Dólar PPP (Paridade de Poder de Compra)</strong>
+                <p>
+                  Ajusta os valores pelo custo de vida local. Serve para
+                  comparar o poder de compra real entre países, ignorando a taxa
+                  de câmbio oficial.
+                </p>
+              </div>
             </aside>
 
             <div id="map-target">
@@ -158,10 +168,12 @@
 
         <div class="dashboard-grid">
           <section class="card">
-            <div class="card-header"><h2>📈 Evolução da Média Global</h2></div>
-
-            <div class="timeline-events">
-              <div class="event" style="left: 42%">COVID</div>
+            <div class="card-header">
+              <h2>Tendência Histórica (2017-2024)</h2>
+              <p>
+                Acompanhe o comportamento da métrica selecionada ao longo dos
+                anos e o impacto de eventos globais.
+              </p>
             </div>
 
             <div id="time-series-target">
@@ -171,7 +183,17 @@
 
           <section class="card">
             <div class="card-header">
-              <h2>🏆 Ranking (<span class="lbl-ano">2024</span>)</h2>
+              <div class="card-header">
+                <h2>
+                  Top 10: Índices Mais Elevados (<span class="lbl-ano"
+                    >2024</span
+                  >)
+                </h2>
+                <p>
+                  Os 10 países que apresentam os maiores valores absolutos ou
+                  percentuais para o indicador atual.
+                </p>
+              </div>
             </div>
 
             <div id="ranking-target" class="scroll-container">
@@ -182,16 +204,18 @@
 
         <section class="card card-full-width">
           <div class="card-header">
-           <h2>
-              🥗 Custo da Dieta Saudável por Grupo (<span id="lbl-pais-atual">País Selecionado</span>)
-            </h2>
+            <h2>A Anatomia do Custo</h2>
+            <p>Quanto cada grupo alimentar pesa no bolso?</p>
           </div>
 
           <div class="card-body-split">
-            <aside class="context-box"><p>
-                Este gráfico decompõe o custo total da dieta nas categorias essenciais:
+            <aside class="context-box">
+              <p>
+                Este gráfico decompõe o custo total da dieta nas categorias
+                essenciais:
                 <strong>Proteínas, Frutas, Vegetais, Amidos e Óleos</strong>.
-              </p></aside>
+              </p>
+            </aside>
 
             <div id="graph-pizza-target">
               <div class="loading">Carregando...</div>
@@ -201,15 +225,27 @@
 
         <section class="card card-full-width">
           <div class="card-header">
-            <h2>🔍 Scatter Plot (<span class="lbl-ano">2024</span>)</h2>
-          </div>
+            <h2>Explorador de Correlações</h2>
+            <p>
+              Investigue hipóteses cruzando duas variáveis à sua escolha (Eixos
+              X e Y) para identificar padrões ou anomalias.
+            </p>
+            <div class="scatter-grid-layout">
+              <div class="control-wrapper">
+                <span class="axis-label">Eixo X (Horizontal)</span>
+                <div id="scatter-x"></div>
+              </div>
 
-          <div class="controls-compact">
-            <div class="mini-control" id="scatter-x"></div>
+              <div class="control-wrapper">
+                <span class="axis-label">Eixo Y (Vertical)</span>
+                <div id="scatter-y"></div>
+              </div>
 
-            <div class="mini-control" id="scatter-y"></div>
-
-            <div id="scatter-year"></div>
+              <div class="control-wrapper full-row">
+                <span class="axis-label">Anos Disponíveis</span>
+                <div id="scatter-year"></div>
+              </div>
+            </div>
           </div>
 
           <div id="scatter-target">
@@ -221,31 +257,18 @@
       <div id="view-brasil" class="view-section" style="display: none">
         <section class="card card-full-width">
           <div class="card-header">
-            <h2>
-              🇧🇷 Geografia da Insegurança (<span class="lbl-ano">2024</span>)
-            </h2>
-
+            <h2>🇧🇷 O Mapa da Desigualdade Alimentar</h2>
             <p>Panorama da Insegurança Alimentar nos estados brasileiros.</p>
           </div>
 
           <div class="card-body-split">
             <aside class="context-box">
               <h3>Desigualdade Regional</h3>
-
               <p>
                 O mapa destaca como a insegurança alimentar não atinge o país de
                 forma homogênea. Regiões Norte e Nordeste historicamente
                 apresentam índices mais críticos.
               </p>
-
-              <div class="glossary-term">
-                <strong>Níveis:</strong>
-
-                <span
-                  >Leve (preocupação), Moderada (redução de quantidade) e Grave
-                  (fome).</span
-                >
-              </div>
             </aside>
 
             <div id="mapa-brasil-target">
@@ -254,47 +277,80 @@
           </div>
         </section>
 
+    
+        <section class="card card-full-width">
+          <div class="card-header">
+            <h2>Trajetória nos Domicílios Brasileiros</h2>
+            <p>
+              Evolução da Segurança Alimentar vs. Insegurança (2009 - 2024).
+            </p>
+          </div>
+
+          <div class="card-body-split wide-chart-layout">
+            
+            <aside class="context-box">
+              <h3>Entenda os Níveis</h3>
+              <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">
+                Classificação da Escala Brasileira de Insegurança Alimentar (EBIA):
+              </p>
+
+              <div class="definitions-list">
+                <div class="def-card level-secure">
+                  <strong>Segurança Alimentar</strong>
+                  <p>Acesso regular e adequado, sem preocupação com falta de alimentos no futuro.</p>
+                </div>
+
+                <div class="def-card level-mild">
+                  <strong>Insegurança Leve</strong>
+                  <p>Preocupação ou incerteza quanto ao acesso. Cai a qualidade, mantém-se a quantidade.</p>
+                </div>
+
+                <div class="def-card level-mod">
+                  <strong>Insegurança Moderada</strong>
+                  <p>Redução na quantidade de alimentos entre os adultos. Falta de qualidade evidente.</p>
+                </div>
+
+                <div class="def-card level-sev">
+                  <strong>Insegurança Grave</strong>
+                  <p>Redução da quantidade também entre crianças (menores de 18). A fome é uma realidade no domicílio.</p>
+                </div>
+              </div>
+            </aside>
+
+            <div id="brasil-temporal-target" class="chart-container">
+              <div class="loading">Carregando série temporal...</div>
+            </div>
+          </div>
+        </section>
+
         <div class="dashboard-grid">
           <section class="card">
             <div class="card-header">
-              <h2>📅 Evolução Histórica</h2>
-
-              <p>Como a situação mudou nos últimos anos?</p>
+              <h2>Por Grandes Regiões (%)</h2>
+              <p>
+                Distribuição percentual da situação de segurança em cada região
+                (2024).
+              </p>
             </div>
 
-            <div id="brasil-temporal-target">
-              <div class="loading">Carregando série temporal...</div>
+            <div id="brasil-composicao-target">
+              <div class="loading">Carregando comparativo...</div>
             </div>
           </section>
-
           <section class="card">
             <div class="card-header">
-              <h2>
-                📊 Distribuição da População (<span class="lbl-ano">2024</span>)
-              </h2>
-
-              <p>Quantas pessoas estão em cada nível de risco?</p>
+              <h2>Rural vs. Urbano</h2>
+              <p>
+                Comparativo: A localização do domicílio influencia na gravidade
+                da insegurança?
+              </p>
             </div>
 
             <div id="brasil-distribuicao-target">
-              <div class="loading">Carregando gráfico de distribuição...</div>
+              <div class="loading">Carregando gráfico regional...</div>
             </div>
           </section>
         </div>
-
-        <section class="card card-full-width">
-          <div class="card-header">
-            <h2>
-              🍽️ Composição da Insegurança (<span class="lbl-ano">2024</span>)
-            </h2>
-
-            <p>Detalhamento das características dos domicílios afetados.</p>
-          </div>
-
-          <div id="brasil-composicao-target">
-            <div class="loading">Carregando análise de composição...</div>
-          </div>
-        </section>
       </div>
     </main>
 
